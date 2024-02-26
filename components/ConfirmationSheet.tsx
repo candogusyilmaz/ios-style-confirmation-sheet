@@ -70,7 +70,11 @@ export default function ConfirmationSheet(props: Readonly<ConfirmationSheetProps
   return (
     <>
       {triggerElement}
-      <Modal transparent visible={modalVisible}>
+      <Modal
+        transparent
+        visible={modalVisible}
+        onRequestClose={() => setContentVisible(false)}
+        onDismiss={() => setContentVisible(false)}>
         {contentVisible && (
           <Animated.View style={styles.root}>
             <Animated.View
@@ -89,8 +93,8 @@ export default function ConfirmationSheet(props: Readonly<ConfirmationSheetProps
               entering={SlideInDown.duration(200)}
               exiting={SlideOutDown.duration(200).withCallback((finished) => {
                 if (finished) {
-                  if (onExitAnimationEnd) runOnJS(onExitAnimationEnd)();
                   runOnJS(setModalVisible)(false);
+                  if (onExitAnimationEnd) runOnJS(onExitAnimationEnd)();
                 }
               })}>
               <View
@@ -135,14 +139,6 @@ export default function ConfirmationSheet(props: Readonly<ConfirmationSheetProps
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
     width: '100%',
     height: '100%',
     zIndex: 1000,

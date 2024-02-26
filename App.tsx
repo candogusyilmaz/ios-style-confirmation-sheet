@@ -2,7 +2,7 @@ import Colors from 'Colors';
 import ConfirmationSheet from 'components/ConfirmationSheet';
 import Toast from 'components/Toast';
 import React from 'react';
-import { StyleSheet, Text, View, Pressable, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
